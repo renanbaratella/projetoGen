@@ -23,7 +23,6 @@ public class LojaArcoFlecha implements ILoja{
 			sb.append("\n |                         |");
 			sb.append("\n |    1 - Comprar Item |"); // A LOJA VENDE PARA O CLIENTE
 			sb.append("\n |     2 - vender Item |"); // A LOJA COMPRA DO CLIENTE
-			sb.append("\n |     0 - voltar        |");
 			sb.append("\n=========================");
 			sb.append("\nOpcão --> ");
 			System.out.println(sb);
@@ -37,10 +36,25 @@ public class LojaArcoFlecha implements ILoja{
 				condicao = "0";
 				break;
 			case "1":
+				System.out.println("Comprando itens de Arco e Flecha do Mercador");
 				condicao = "0";
 				break;
-			case "2":	
-				condicao = "0";
+			case "2":
+				try {
+				System.out.println("Vendendo seus Arcos e Flechas");
+				cliente.getArcoFlecha(cliente.arcoFlechaCliente);
+				cliente.vendaDeArcoFlecha();
+				
+				
+				
+				cliente.setSaldo(cliente.getSaldo() + lojaArcoFlecha.get(1).getPreco());
+				System.out.println(cliente.getSaldo());
+				
+				
+				}
+				catch(IndexOutOfBoundsException erroIndex) {
+					System.out.println("Voce nao tem mais arcos e flechas para vender!!!" + erroIndex);
+				}
 				break;
 			default:
 				System.out.println("Opção inválida! Tente novamente.");
@@ -61,16 +75,19 @@ public class LojaArcoFlecha implements ILoja{
 			switch (condicao) {
 			case "1":
 				cliente.setSaldo(cliente.getSaldo() - lojaArcoFlecha.get(1).getPreco());
+				cliente.arcoFlechaCliente.add(lojaArcoFlecha.get(1));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;
 			case "2":
 				cliente.setSaldo(cliente.getSaldo() - lojaArcoFlecha.get(2).getPreco());
+				cliente.arcoFlechaCliente.add(lojaArcoFlecha.get(2));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;
 			case "3":
 				cliente.setSaldo(cliente.getSaldo() - lojaArcoFlecha.get(3).getPreco());
+				cliente.arcoFlechaCliente.add(lojaArcoFlecha.get(3));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;

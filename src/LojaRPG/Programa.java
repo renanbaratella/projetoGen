@@ -190,10 +190,12 @@ public class Programa {
 			LojaArcoFlecha lojaArcoFlecha = new LojaArcoFlecha();
 			switch (condicao) {
 			case "1":
+		
 				lojaPocao.menuLoja(cliente);
+				
 				System.out.println("Loja de poções***");
-					for(int i=1; i<lojaPocao.itensPocao.size(); i++) {
-						System.out.println(i+": "+lojaPocao.itensPocao.get(i).getNome() + " R$" + lojaPocao.itensPocao.get(i).getPreco());
+					for(int i=1; i<lojaPocao.lojaItensPocao.size(); i++) {
+						System.out.println(i+": "+lojaPocao.lojaItensPocao.get(i).getNome() + " R$" + lojaPocao.lojaItensPocao.get(i).getPreco());
 					}
 
 				lojaPocao.escolherIten(cliente);

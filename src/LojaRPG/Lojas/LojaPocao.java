@@ -11,7 +11,7 @@ import LojaRPG.Pessoas.Cliente;
 public class LojaPocao implements ILoja{
 
 	public static Scanner scan = new Scanner(System.in);
-	public List<Item> itensPocao = Arrays.asList(new Item("",0), new Item("Pocao do Trovao", 2), new Item("Pocao do Ar", 4), new Item("Pocao da Terra", 3));
+	public List<Item> lojaItensPocao = Arrays.asList(new Item("",0), new Item("Pocao do Trovao", 2), new Item("Pocao do Ar", 4), new Item("Pocao da Terra", 3));
 	Programa programa = new Programa();
 	
 	public LojaPocao() {
@@ -43,11 +43,26 @@ public class LojaPocao implements ILoja{
 				condicao = "0";
 				break;
 			case "1":
+				System.out.println("Comprando itens de Pocoes do Mercador");
+				
 				condicao = "0";
 				break;
 			case "2":
-				System.out.println("Seu saldo: "+ cliente.getSaldo());
-				condicao = "0";
+				try {
+				System.out.println("Vendendo SEUS itens");
+				cliente.getPocoesCliente(cliente.pocoesCliente);
+				cliente.vendaDePocoes();
+				
+				
+				
+				cliente.setSaldo(cliente.getSaldo() + lojaItensPocao.get(1).getPreco());
+				System.out.println(cliente.getSaldo());
+				
+				
+				}
+				catch(IndexOutOfBoundsException erroIndex) {
+					System.out.println("Voce nao tem mais pocoes para vender!!!" + erroIndex);
+				}
 				break;
 			default:
 				System.out.println("Opção inválida! Tente novamente.");
@@ -67,20 +82,20 @@ public class LojaPocao implements ILoja{
 
 			switch (condicao) {
 			case "1":
-				cliente.setSaldo(cliente.getSaldo() - itensPocao.get(1).getPreco());
-//				cliente.pocoesCliente.add(itensPocao.get(1));
+				cliente.setSaldo(cliente.getSaldo() - lojaItensPocao.get(1).getPreco());
+				cliente.pocoesCliente.add(lojaItensPocao.get(1));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;
 			case "2":
-				cliente.setSaldo(cliente.getSaldo() - itensPocao.get(2).getPreco());
-//				cliente.pocoesCliente.add(itensPocao.get(2));
+				cliente.setSaldo(cliente.getSaldo() - lojaItensPocao.get(2).getPreco());
+				cliente.pocoesCliente.add(lojaItensPocao.get(2));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;
 			case "3":
-				cliente.setSaldo(cliente.getSaldo() - itensPocao.get(3).getPreco());
-//				cliente.pocoesCliente.add(itensPocao.get(3));
+				cliente.setSaldo(cliente.getSaldo() - lojaItensPocao.get(3).getPreco());
+				cliente.pocoesCliente.add(lojaItensPocao.get(3));
 				System.out.println(cliente.getSaldo());
 				condicao = "0";
 				break;
